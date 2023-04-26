@@ -1,0 +1,42 @@
+GET http://localhost:3000/api
+
+###
+
+GET http://localhost:3000/api/12335645
+###
+
+
+POST http://localhost:3000/api
+Content-Type: application/json
+
+{
+    "ISBN":12335645,
+    "title":"New book",
+    "author":"Manoj Neupane",
+    "release_date":"April 22, 2023"
+}
+
+###
+
+POST http://localhost:3000/api
+Content-Type: application/json
+
+{
+    "ISBN":12335645,
+    "title":"Nepali",
+    "author":"Another man",
+    "release_date":"April 5"
+}
+
+###
+
+POST http://localhost:3000/api
+Content-Type: application/json
+
+{
+    "ISBN":123,
+    "title":"ENglish"
+}
+###
+
+DELETE  http://localhost:3000/api/
