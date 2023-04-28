@@ -4,7 +4,7 @@ mongoose = require("mongoose");
 
 dotenv.config()
 
-database_url = process.env.DATABASE || "mongodb://localhost/books"
+database_url = process.env.DATABASE || "mongodb://localhost/library"
 server_port = process.env.SERVER_PORT || 3000;
 
 const server = express();
