@@ -1,6 +1,12 @@
-GET http://localhost:3000/api/123456
+POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cGlyZV9kYXRlIjoxNjgyOTM1OTI5MjQzLCJpYXQiOjE2ODI3NjMxMjl9.H8nvTg6gE5FkczcnKzpd2b3UAPl4gYn5Gi4GQB-8ay0"
+    "email":"user@gmail.com",
+    "password":"user"
 }
+
+###
+GET http://localhost:3000/api
+Content-Type: application/json
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlkIjoiNjQ0ZDAyY2UxMTg5YWIzNjcxM2FkY2ViIiwidG9rZW5EYXRlIjoxNjgyNzY5ODAzMjA0LCJpYXQiOjE2ODI3Njk4MDMsImV4cCI6MTY4Mjk0MjYwM30.-YNCiJXOFelS2xumKStYKru9DFamBvj5tZIYQcMnkkM

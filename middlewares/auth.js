@@ -13,23 +13,16 @@ function check_permission(roles_to_permit){
 }
 
 function validateToken(req,res,next){
-    token = req.body.token
+    token = req.cookies["token"] || req.body.token
     if(token){
         jwt.verify(token,process.env.ACCESS_KEY, (error, data)=>{
             if (error){
+                req.clearCookie("token")
                 return res.status(401).json({"error_message":"Token invalid"})
             }
-            // checking the expiry date of token
-            
-            console.log(data.expire_date-Date.now())
-            if (data.expire_date-Date.now()>0){
-                req.tokenData = data;
-                next()
-                return
-            }
-            return res.status(401).json({"error_message":"Token expired"})
+            req.tokenData = data
+            next()
         })
-
     }else{
         return res.status(401).json({"error_message":"No token provided"})
     }

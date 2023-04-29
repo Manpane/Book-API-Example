@@ -26,7 +26,6 @@ router.post("/signup",async (req,res) => {
         const hash = await bcrypt.hash(password,10)
         const new_user = await new User({email:email,password:hash,role:role}).save();
         return res.status(200).json({account:new_user})
-        //generating access token
         
     } catch (error) {
         return res.status(500).json({"error_message":error.message})
@@ -45,10 +44,12 @@ router.post("/login",async (req,res) => {
         const tokenData = {
             email: user.email,
             role: user.role,
-            expire_date: Date.now() + (2*86400000) // 2 days
+            id: user._id,
+            tokenDate: Date.now()
         }
-        const token = jwt.sign(tokenData,process.env.ACCESS_KEY)
-        return res.status(200).json({user:user,"token":token})
+        const token = jwt.sign(tokenData,process.env.ACCESS_KEY,{expiresIn:"2d"})
+        res.cookie("token",token,{httpOnly:true,expires:new Date(Date.now()+86400*1000*2)})  //86400*1000*2 miliseconds= 2 days
+        return res.status(200).json({"message":"logged in successfull"})
     }
     return res.status(402).json({"error_message":"Invalid credentials"})
 })
