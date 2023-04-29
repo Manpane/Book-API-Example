@@ -1,8 +1,7 @@
 const cookieParser = require("cookie-parser");
-
-dotenv = require("dotenv");
-express = require("express");
-mongoose = require("mongoose");
+const dotenv = require("dotenv");
+const express = require("express");
+const mongoose = require("mongoose");
 
 dotenv.config()
 
@@ -19,6 +18,7 @@ database.once("open",()=>{console.log("Connected to mongodb server.")})
 
 server.use(express.json())
 server.use(cookieParser())
+
 server.use("/api",require("./routers/api_routes"))
 server.use("/auth",require("./routers/auth_routes"))
 

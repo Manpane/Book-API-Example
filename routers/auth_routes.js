@@ -48,7 +48,10 @@ router.post("/login",async (req,res) => {
             tokenDate: Date.now()
         }
         const token = jwt.sign(tokenData,process.env.ACCESS_KEY,{expiresIn:"2d"})
-        res.cookie("token",token,{httpOnly:true,expires:new Date(Date.now()+86400*1000*2)})  //86400*1000*2 miliseconds= 2 days
+        res.cookie("token",token,{
+            httpOnly:true,expires:new Date(Date.now()+86400*1000*2),
+            secure:true
+        })  //86400*1000*2 miliseconds= 2 days
         return res.status(200).json({"message":"logged in successfull"})
     }
     return res.status(402).json({"error_message":"Invalid credentials"})
