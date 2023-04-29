@@ -7,27 +7,27 @@ const {validateToken, check_permission } = require("../middlewares/auth")
 router.get("/", validateToken , async (req,res)=>{ // get all the books
     try{
         const data = await Book.find();
-        res.status(200).json(data);
+        return res.status(200).json(data);
     }catch(error){
-        res.json({"error_message":error.message})
+        return res.json({"error_message":error.message})
     }
 })
 
 router.get("/:isbn", validateToken ,async (req,res)=>{ // get book by ISBN number
     try{
         const data = await Book.find({ISBN:req.params.isbn});
-        res.status(200).json(data);
+        return res.status(200).json(data);
     }catch(error){
-        res.json({"error_message":error.message})
+        return res.json({"error_message":error.message})
     }
 })
 
 router.post("/", validateToken , check_permission(["librarian","admin"]) , async (req,res)=>{ // create new book
     try{
         const data = new Book(req.body.book);
-        res.json(await data.save())
+        return res.json(await data.save())
     }catch(error){
-        res.json({"error_message":error.message})
+        return res.json({"error_message":error.message})
     }
 })
 
@@ -47,7 +47,7 @@ router.delete("/:isbn", validateToken, check_permission(["admin"]) , async (req,
         const deleted = await Book.findOneAndDelete({ISBN:req.params.isbn})
         return res.status(202).json(deleted)
     }catch(err){
-        res.json({"error_message":err.message})
+        return res.json({"error_message":err.message})
     }
 })
 
