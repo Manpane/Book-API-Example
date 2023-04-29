@@ -22,7 +22,6 @@ router.get("/:isbn", validateToken ,async (req,res)=>{ // get book by ISBN numbe
     }
 })
 
-
 router.post("/", validateToken , check_permission(["librarian","admin"]) , async (req,res)=>{ // create new book
     try{
         const data = new Book(req.body.book);
