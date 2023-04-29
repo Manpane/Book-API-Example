@@ -1,5 +1,4 @@
 express = require("express")
-
 const router = express.Router()
 const Book = require("../model/book")
 
@@ -35,16 +34,9 @@ router.post("/", validateToken , check_permission(["librarian","admin"]) , async
 
 router.patch("/:isbn", validateToken, check_permission(["librarian","admin"]), async (req,res)=>{ // update book by ISBN number
     try{
-        const user = await getUserByEmail(req.tokenData.email)
-        if (user){
-            if (user.role=="admin"){
-                const updated = Book.updateOne({ISBN:req.params.isbn},req.body.book)
-                res.status(200).json(updated);
-            }
-            return res.status(403).json({"error_message":"Only admin can do this operation."})
-        }
-        return res.status(404).json({"error_message":"user not found"})
-        
+        console.log("Check");
+        const updated = await Book.updateOne({ISBN:req.params.isbn},req.body.book)
+        return res.status(200).json(updated);    
     }catch(err){
         return res.json({"error_message":err.message})
     }
@@ -52,16 +44,9 @@ router.patch("/:isbn", validateToken, check_permission(["librarian","admin"]), a
 
 router.delete("/:isbn", validateToken, check_permission(["admin"]) , async (req,res)=>{ // delete book by ISBN number
     try{
-        const user = await getUserByEmail(req.tokenData.email)
-        if (user){
-            if (user.role=="admin"){
-                const deleted = Book.findOneAndDelete({ISBN:req.params.isbn})
-                return res.status(202).json(deleted)
-            }
-            return res.status(403).json({"error_message":"Only admin can do this operation."})
-        }
-        return res.status(404).json({"error_message":"user not found"})
-
+        console.log(req.params)
+        const deleted = await Book.findOneAndDelete({ISBN:req.params.isbn})
+        return res.status(202).json(deleted)
     }catch(err){
         res.json({"error_message":err.message})
     }

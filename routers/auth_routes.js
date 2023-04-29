@@ -47,7 +47,7 @@ router.post("/login",async (req,res) => {
         const tokenData = {
             email: user.email,
             role: user.role,
-            expire_date: Date.now() + (2*86400) // 2 days
+            expire_date: Date.now() + (2*86400000) // 2 days
         }
         const token = jwt.sign(tokenData,process.env.ACCESS_KEY)
         return res.status(200).json({user:user,"token":token})

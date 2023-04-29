@@ -1,41 +1,6 @@
-POST http://localhost:3000/auth/signup
+DELETE http://localhost:3000/api?isbn=123456
 Content-Type: application/json
 
 {
-    "email":"hemant@gmail.com",
-    "password":"hemant",
-    "role":"librarian"
-}
-
-###
-
-POST http://localhost:3000/auth/login
-Content-Type: application/json
-
-{
-    "email":"hemant@gmail.com",
-    "password":"hemant"
-}
-
-###
-
-GET http://localhost:3000/api/
-Content-Type: application/json
-
-{
-    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhlbWFudEBnbWFpbC5jb20iLCJyb2xlIjoibGlicmFyaWFuIiwiZXhwaXJlX2RhdGUiOjE2ODI2NzQyNzc3OTgsImlhdCI6MTY4MjY3NDIxN30.bFAlnUdjOyIhXdUFlWhJP5fS4yBp_BOJmGrpqhqzH8I"
-}
-
-###
-
-POST http://localhost:3000/api/
-Content-Type: application/json
-
-{
-    "book":{
-        "title":"Book 5",
-        "ISBN":"1234567",
-        "author":"Manoj"
-    },
-    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhlbWFudEBnbWFpbC5jb20iLCJyb2xlIjoibGlicmFyaWFuIiwiZXhwaXJlX2RhdGUiOjE2ODI2NzQyNzc3OTgsImlhdCI6MTY4MjY3NDIxN30.bFAlnUdjOyIhXdUFlWhJP5fS4yBp_BOJmGrpqhqzH8I"
+    "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImV4cGlyZV9kYXRlIjoxNjgyOTM1OTI5MjQzLCJpYXQiOjE2ODI3NjMxMjl9.H8nvTg6gE5FkczcnKzpd2b3UAPl4gYn5Gi4GQB-8ay0"
 }
