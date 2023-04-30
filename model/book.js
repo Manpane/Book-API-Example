@@ -23,6 +23,10 @@ book_schema = new mongoose.Schema({
     version:{
         type:Number,
         default: 1
+    },
+    blocked_to:{
+        type:Array,
+        default: [],
     }
 })
 module.exports = mongoose.model("Book",book_schema)

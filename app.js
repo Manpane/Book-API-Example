@@ -16,6 +16,8 @@ server.listen(server_port,()=>{console.log("Server started at ",server_port)})
 
 database.once("open",()=>{console.log("Connected to mongodb server.")})
 
+app.use(express.urlencoded({ extended: true }));
+
 server.use(express.json())
 server.use(cookieParser())
 

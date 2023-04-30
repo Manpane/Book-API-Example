@@ -1,6 +1,15 @@
 express = require("express")
 bcrypt = require("bcrypt")
 jwt = require("jsonwebtoken")
+const Book = require("../model/book")
+
+async function check_block_status(req,res,next){
+    const book = await Book.findOne({ISBN})
+    if(book.blocked_to.includes(req.tokenData._id)){
+        return res.status(403).json({"error_message":"You don't have the permission to access this book."})
+    }
+    next()
+}
 
 function check_permission(roles_to_permit){
     return function (req,res,next){ // returning a middleware function
@@ -28,5 +37,4 @@ function validateToken(req,res,next){
     }
 }
 
-module.exports.check_permission = check_permission;
-module.exports.validateToken = validateToken;
+module.exports = {check_block_status,check_permission,validateToken}
