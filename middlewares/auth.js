@@ -4,9 +4,12 @@ jwt = require("jsonwebtoken")
 const Book = require("../model/book")
 
 async function check_block_status(req,res,next){
+    const ISBN = req.params.isbn
     const book = await Book.findOne({ISBN})
-    if(book.blocked_to.includes(req.tokenData._id)){
-        return res.status(403).json({"error_message":"You don't have the permission to access this book."})
+    if (book){
+        if(book.blocked_to.includes(req.tokenData.email)){
+            return res.status(403).json({"error_message":"You don't have the permission to access this book."})
+        }
     }
     next()
 }

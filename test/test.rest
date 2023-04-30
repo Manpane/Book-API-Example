@@ -7,6 +7,19 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:3000/api
+GET http://localhost:3000/api/123456789
 Content-Type: application/json
-Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlkIjoiNjQ0ZDAyY2UxMTg5YWIzNjcxM2FkY2ViIiwidG9rZW5EYXRlIjoxNjgyNzY5ODAzMjA0LCJpYXQiOjE2ODI3Njk4MDMsImV4cCI6MTY4Mjk0MjYwM30.-YNCiJXOFelS2xumKStYKru9DFamBvj5tZIYQcMnkkM
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpZCI6IjY0NGQwMmI1MTE4OWFiMzY3MTNhZGNlNyIsInRva2VuRGF0ZSI6MTY4MjgyNzQ3MzY1MywiaWF0IjoxNjgyODI3NDczLCJleHAiOjE2ODMwMDAyNzN9.MCYzkhiL02ELjkc1JmLoIY69WIIEAXp0I0Smn8u5Qmg
+
+{
+    
+}
+###
+POST http://localhost:3000/admin/unblock
+Content-Type: application/json
+Cookie: token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInJvbGUiOiJhZG1pbiIsImlkIjoiNjQ0ZDAyY2UxMTg5YWIzNjcxM2FkY2ViIiwidG9rZW5EYXRlIjoxNjgyODI1MTI3NDcxLCJpYXQiOjE2ODI4MjUxMjcsImV4cCI6MTY4Mjk5NzkyN30.zMt86atePXCSaTQ4bbMb921dMMRgW1Lnfi2jFzwYUQY
+
+{
+    "email":"user@gmail.com",
+    "books":[123456789,678] 
+}

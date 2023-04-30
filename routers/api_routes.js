@@ -2,18 +2,20 @@ express = require("express")
 const router = express.Router()
 const Book = require("../model/book")
 
-const {validateToken, check_permission } = require("../middlewares/auth")
+const {validateToken, check_permission, check_block_status } = require("../middlewares/auth")
 
 router.get("/", validateToken , async (req,res)=>{ // get all the books
     try{
-        const data = await Book.find();
+        user_email = req.tokenData.email
+        let data = await Book.find();
+        data = data.filter(book=>!book.blocked_to.includes(user_email)) // filtering out the blocked books for this user
         return res.status(200).json(data);
     }catch(error){
         return res.json({"error_message":error.message})
     }
 })
 
-router.get("/:isbn", validateToken ,async (req,res)=>{ // get book by ISBN number
+router.get("/:isbn", validateToken ,check_block_status , async (req,res)=>{ // get book by ISBN number
     try{
         const data = await Book.find({ISBN:req.params.isbn});
         return res.status(200).json(data);
